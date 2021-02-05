@@ -10,7 +10,7 @@ module.exports = {
         proxy: {
             '/api': {//代理api
                 //target: "http://192.168.62.228:9092",//测试api地址
-                target:'http://172.51.216.108:14010/',
+                target:'http://123.57.222.177:14010/',
                 //target: "http://101.200.86.95:9092",//开发api地址http://192.168.62.228:9092/
                 changeOrigin: true,//是否跨域
                 ws: true, // proxy websockets

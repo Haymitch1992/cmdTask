@@ -197,11 +197,11 @@
 </template>
 
 <script>
-import addList from "../components/addList";
-import addOptions from "../components/addOptions";
-import addVersion from "../components/addVersion";
-import viewOptions from "../components/viewOptions";
-import viewLog from "../components/viewLog";
+import addList from '../components/addList';
+import addOptions from '../components/addOptions';
+import addVersion from '../components/addVersion';
+import viewOptions from '../components/viewOptions';
+import viewLog from '../components/viewLog';
 
 import {
   GET_CONFIG_LIST,
@@ -210,7 +210,7 @@ import {
   POST_TASK_LIST,
   POST_TASK_RUN,
   POST_VERSIONS_LIST,
-} from "../api/url";
+} from '../api/url';
 export default {
   components: {
     addList,
@@ -219,7 +219,7 @@ export default {
     viewOptions,
     viewLog,
   },
-  name: "maintenance-list",
+  name: 'maintenance-list',
   data() {
     return {
       raskModel: false,
@@ -229,67 +229,67 @@ export default {
       viewLog: false,
       current: 0,
       viewObj: [],
-      paramMidType: "",
-      logDate: "",
-      paramType: "",
+      paramMidType: '',
+      logDate: '',
+      paramType: '',
       paramCloumns: [
         {
-          title: "参数Id",
-          dataIndex: "id",
+          title: '参数Id',
+          dataIndex: 'id',
         },
         {
-          title: "参数名",
-          dataIndex: "name",
+          title: '参数名',
+          dataIndex: 'name',
         },
         {
-          title: "参数模板",
-          dataIndex: "type",
+          title: '参数模板',
+          dataIndex: 'type',
         },
         {
-          title: "类型",
-          dataIndex: "midType",
+          title: '类型',
+          dataIndex: 'midType',
         },
         {
-          title: "注释说明",
-          dataIndex: "description",
+          title: '注释说明',
+          dataIndex: 'description',
         },
       ],
       versionCloumns: [
         {
-          title: "版本号Id",
-          dataIndex: "id",
+          title: '版本号Id',
+          dataIndex: 'id',
         },
         {
-          title: "版本名",
-          dataIndex: "name",
+          title: '版本名',
+          dataIndex: 'name',
         },
       ],
       columns: [
         {
-          title: "任务号Id",
-          dataIndex: "id",
+          title: '任务号Id',
+          dataIndex: 'id',
         },
         {
-          title: "版本号",
-          dataIndex: "version",
+          title: '版本号',
+          dataIndex: 'version',
         },
         {
-          title: "任务名称",
-          dataIndex: "taskName",
+          title: '任务名称',
+          dataIndex: 'taskName',
         },
         {
-          title: "系统名称-组件名",
-          dataIndex: "projectName",
+          title: '系统名称-组件名',
+          dataIndex: 'projectName',
         },
 
         {
-          title: "执行进度",
-          dataIndex: "result",
+          title: '执行进度',
+          dataIndex: 'result',
           width: 250,
         },
         {
-          title: "执行时间",
-          dataIndex: "datetime",
+          title: '执行时间',
+          dataIndex: 'datetime',
         },
 
         // {
@@ -299,16 +299,16 @@ export default {
         //     scopedSlots: {customRender: 'options'}
         // },
         {
-          title: "操作",
-          dataIndex: "address",
-          scopedSlots: { customRender: "operation" },
+          title: '操作',
+          dataIndex: 'address',
+          scopedSlots: { customRender: 'operation' },
         },
       ],
       dataList: [],
       paramData: [],
       versionData: [],
-      currentVersion: "-",
-      currentOptionType: "-",
+      currentVersion: '-',
+      currentOptionType: '-',
       urlList: [],
       urlDate: {},
       urltoken: [],
@@ -340,7 +340,7 @@ export default {
               typeList.push(item.midType);
             }
           });
-          this.$store.commit("saveParamList", {
+          this.$store.commit('saveParamList', {
             arr1: parmaList,
             arr2: typeList,
           });
@@ -367,7 +367,7 @@ export default {
       this.current = 3;
       this.urlDate = obj;
       if (obj.token) {
-        this.urltoken = obj.token.split(",");
+        this.urltoken = obj.token.split(',');
       } else {
         this.urltoken = [];
       }
@@ -409,8 +409,8 @@ export default {
         arr1.push(i);
         arr2.push(outObj[i]);
         arr3.push({
-          value: "",
-          key: "",
+          value: '',
+          key: '',
         });
       }
       obj.arr1 = arr1;
@@ -422,16 +422,16 @@ export default {
     },
     createRask() {
       this.raskInfo = {
-        taskName: "",
-        id: "",
-        projectName: "",
+        taskName: '',
+        id: '',
+        projectName: '',
         version: null,
         arr1: [],
         arr2: [],
         arr3: [
           {
-            value: "",
-            key: "",
+            value: '',
+            key: '',
           },
         ],
         arr4: [],
@@ -462,10 +462,10 @@ export default {
     raskRun(raskId) {
       let _this = this;
       this.$confirm({
-        title: "确认运行?",
-        content: "是否确认运行",
-        okText: "Yes",
-        cancelText: "No",
+        title: '确认运行?',
+        content: '是否确认运行',
+        okText: 'Yes',
+        cancelText: 'No',
         onOk() {
           _this.$axios
             .get(POST_TASK_RUN, {
@@ -482,7 +482,7 @@ export default {
             });
         },
         onCancel() {
-          console.log("Cancel");
+          console.log('Cancel');
         },
       });
     },
@@ -501,17 +501,17 @@ export default {
       this.$axios
         .get(
           POST_PARAM_LIST,
-          this.currentOptionType !== "-"
+          this.currentOptionType !== '-'
             ? {
                 params: {
                   type: this.currentOptionType,
                 },
               }
-            : ""
+            : ''
         )
         .then((res) => {
           this.paramData = res.data.data;
-          console.log("数据结构", this.paramData);
+          console.log('数据结构', this.paramData);
         })
         .catch((result) => {
           console.log(result);
@@ -521,13 +521,13 @@ export default {
       this.$axios
         .get(
           POST_TASK_LIST,
-          this.currentVersion !== "-"
+          this.currentVersion !== '-'
             ? {
                 params: {
                   version: this.currentVersion,
                 },
               }
-            : ""
+            : ''
         )
         .then((res) => {
           console.log(res);
